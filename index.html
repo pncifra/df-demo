@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <!-- #docregion head -->
+    <!-- #docregion base-href -->
+  <head>
+    <base href="/">
+    <!-- #enddocregion base-href -->
+    <title>Task Tracker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- #enddocregion head -->
+    <!-- #docregion css -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="node_modules/@salesforce-ux/design-system/assets/styles/salesforce-lightning-design-system.css">
+
+    <!-- #enddocregion css -->
+    <!-- #docregion head -->
+    <!-- IE required polyfills, in this exact order -->
+    <script src="node_modules/es6-shim/es6-shim.min.js"></script>
+    <script src="node_modules/systemjs/dist/system-polyfills.js"></script>
+    <!--<script src="node_modules/angular2/es6/dev/src/testing/shims_for_IE.js"></script>
+
+    <script src="node_modules/angular2/bundles/angular2-polyfills.js"></script>-->
+    <script src="node_modules/reflect-metadata/Reflect.js"></script>
+    <script src="node_modules/zone.js/dist/zone.js"></script>
+    <script src="node_modules/systemjs/dist/system.src.js"></script>
+    <script src="node_modules/rxjs/bundles/Rx.js"></script>
+
+    <script src="node_modules/tether/dist/js/tether.js"></script>
+    <script src="node_modules/ng-lightning/ng-lightning.bundle.js"></script>
+    <!-- #docregion router -->
+    <!--<script src="node_modules/angular2/bundles/router.dev.js"></script>-->
+    <!-- #enddocregion router -->
+    <script>
+     var  map = {
+        'app': 'app',
+        'tether': 'node_modules/tether/dist/js/tether.js'
+      };
+      
+      var packages = {
+        'app': { format: 'register', defaultExtension: 'js' }
+      };
+      
+      var packageNames = [
+          '@angular/common',
+          '@angular/compiler',
+          '@angular/core',
+          '@angular/http',
+          '@angular/platform-browser',
+          '@angular/platform-browser-dynamic',
+          '@angular/router-deprecated'
+      ];
+      
+      packageNames.forEach(function(pkgName) {
+        map[pkgName] = 'node_modules/' + pkgName;
+      });
+      
+      packageNames.forEach(function(pkgName) {
+        packages[pkgName] = { main: 'index.js', defaultExtension: 'js' };
+      });
+      
+      System.config({
+        map: map,
+        packages: packages
+      });
+      System.import('app/main')
+            .then(null, console.error.bind(console));
+    </script>
+  </head>
+  <!-- #enddocregion head -->
+
+  <body>
+    <my-app>Loading...</my-app>
+  </body>
+</html>
